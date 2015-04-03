@@ -14,6 +14,11 @@ public class GameBoardPanel extends JPanel {
 	private GameBoard gameBoard;
 	private int boardSize;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param boardSize
+	 */
 	public GameBoardPanel(int boardSize) {
 		this.gameBoard = new GameBoard(boardSize);
 		this.boardSize = boardSize;
@@ -24,18 +29,38 @@ public class GameBoardPanel extends JPanel {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Get the gameboard
+	 * 
+	 * @return
+	 */
 	public GameBoard getGameBoard() {
 		return this.gameBoard;
 	}
 	
+	/**
+	 * Get the gameboard size
+	 * 
+	 * @return
+	 */
 	public int getBoardSize() {
 		return this.boardSize;
 	}
 	
+	/**
+	 * Draw this component
+	 */
 	public void paintComponent(Graphics g) {
         this.gameBoard.drawGameBoard(g);
     }
 
+	/**
+	 * Return the piece at x, y
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public Piece getPiece(int x, int y) {
 		return this.gameBoard.getPiece(x, y);
 	}

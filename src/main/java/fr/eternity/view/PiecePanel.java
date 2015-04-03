@@ -16,6 +16,9 @@ public class PiecePanel extends JPanel {
 	
 	private Piece pieceToCreate;
 	
+	/**
+	 * Constructor
+	 */
 	public PiecePanel() {
 		if (PiecePanel.background == null) {
 			PiecePanel.background = new ImageIcon("Images/cross.png");
@@ -38,15 +41,31 @@ public class PiecePanel extends JPanel {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Draw the piece panel
+	 */
 	public void paintComponent(Graphics g) {
         g.drawImage(PiecePanel.background.getImage(), 0, 0, null);
         this.pieceToCreate.drawPiece(g);
     }
 	
+	/**
+	 * Get the piece to create
+	 * 
+	 * @return
+	 */
 	public Piece getPieceToCreate() {
 		return this.pieceToCreate;
 	}
 	
+	/**
+	 * Reset the piece to create
+	 * 
+	 * @param topSide
+	 * @param rightSide
+	 * @param bottomSide
+	 * @param leftSide
+	 */
 	public void resetPieceToCreate(Side topSide, Side rightSide, Side bottomSide, Side leftSide) {
 		this.pieceToCreate = new Piece();
 		try {

@@ -19,10 +19,21 @@ public enum Side {
 	
 	private ImageIcon view;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param image
+	 */
 	private Side(String image) {
 		this.view = new ImageIcon(this.getClass().getResource(image));
 	}
 
+	/**
+	 * Draw the side
+	 * 
+	 * @param g
+	 * @param sideNumber
+	 */
 	public void drawSide(Graphics g, int sideNumber) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.rotate((Math.PI / 2) * sideNumber, this.view.getIconWidth() / 2, this.view.getIconHeight() / 2);
@@ -30,6 +41,14 @@ public enum Side {
 		g2.rotate((Math.PI / 2) * -sideNumber, this.view.getIconWidth() / 2, this.view.getIconHeight() / 2);
 	}
 
+	/**
+	 * Draw the side with x and y offset
+	 * 
+	 * @param g
+	 * @param sideNumber
+	 * @param x
+	 * @param y
+	 */
 	public void drawSide(Graphics g, int sideNumber, int x, int y) {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.translate(x * Piece.WIDTH, y * Piece.WIDTH);
@@ -39,6 +58,11 @@ public enum Side {
 		g2.translate(x * -Piece.WIDTH, y * -Piece.WIDTH);
 	}
 	
+	/**
+	 * Return all side without the borderSide
+	 * 
+	 * @return
+	 */
 	public static Object[] getInternalSides() {
 		ArrayList<Side> sides = new ArrayList<Side>();
 		for (Side side: Side.values()) {

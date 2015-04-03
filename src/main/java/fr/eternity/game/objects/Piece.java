@@ -14,11 +14,20 @@ public class Piece {
 	private int currentSide;
 	private final int maxSide = 4;
 	
+	/**
+	 * Constructor
+	 */
 	public Piece() {
 		this.sides = new Side[4];
 		this.currentSide = 0;
 	}
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param sides
+	 * @throws Exception
+	 */
 	public Piece(Side[] sides) throws Exception {
 		if (sides.length == this.maxSide) {
 			this.sides = sides;
@@ -27,6 +36,12 @@ public class Piece {
 		}
 	}
 	
+	/**
+	 * Add a side to a piece
+	 * 
+	 * @param side
+	 * @throws Exception
+	 */
 	public void addSide(Side side) throws Exception {
 		if (this.currentSide < this.maxSide) {
 			this.sides[this.currentSide] = side;
@@ -36,6 +51,11 @@ public class Piece {
 		}
 	}
 
+	/**
+	 * Draw the piece
+	 * 
+	 * @param g
+	 */
 	public void drawPiece(Graphics g) {
 		for (int i = 0; i < this.sides.length; i++) {
 			if (this.sides[i] != null) {
@@ -44,6 +64,13 @@ public class Piece {
 		}
 	}
 
+	/**
+	 * Draw a piece with x and y offset
+	 * 
+	 * @param g
+	 * @param x
+	 * @param y
+	 */
 	public void drawPiece(Graphics g, int x, int y) {
 		for (int i = 0; i < this.sides.length; i++) {
 			if (this.sides[i] != null) {
@@ -52,14 +79,30 @@ public class Piece {
 		}
 	}
 
+	/**
+	 * Set the right side of the piece
+	 * 
+	 * @param side
+	 */
 	public void setRightSide(Side side) {
 		this.sides[1] = side;
 	}
 
+	/**
+	 * Set the bottom side of the piece
+	 * 
+	 * @param side
+	 */
 	public void setBottomSide(Side side) {
 		this.sides[2] = side;
 	}
 	
+	/**
+	 * Get a side by his number
+	 * 
+	 * @param side
+	 * @return
+	 */
 	public Side getSide(int side) {
 		return this.sides[side];		
 	}

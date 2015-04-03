@@ -26,6 +26,9 @@ public class EditPiecePanel extends JPanel {
 	
 	private GameBoardPanel gameBoardPanel;
 	
+	/**
+	 * Constructor
+	 */
 	public EditPiecePanel() {
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		GridBagLayout gridBagLayout = new GridBagLayout();

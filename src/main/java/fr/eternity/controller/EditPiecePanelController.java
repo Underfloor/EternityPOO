@@ -27,6 +27,16 @@ public class EditPiecePanelController implements ActionListener {
 	private int currentPieceX = 0;
 	private int currentPieceY = 0;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param rightSideComboBox
+	 * @param bottomSideComboBox
+	 * @param validateButton
+	 * @param autoCompleteButton
+	 * @param piecePanel
+	 * @param gameBoardPanel
+	 */
 	public EditPiecePanelController(
 		JComboBox<Side> rightSideComboBox,
 		JComboBox<Side> bottomSideComboBox,
@@ -48,6 +58,9 @@ public class EditPiecePanelController implements ActionListener {
 		this.autoCompleteButton.addActionListener(this);
 	}
 	
+	/**
+	 * Event handler
+	 */
 	public void actionPerformed(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == this.rightSideComboBox || actionEvent.getSource() == this.bottomSideComboBox) {
 			if (actionEvent.getSource() == this.rightSideComboBox) {
@@ -67,6 +80,11 @@ public class EditPiecePanelController implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Add a the currently edited piece to the gameboard
+	 * 
+	 * @param isAutocomplete
+	 */
 	private void addCurrentPieceToGameBoard(boolean isAutocomplete) {
 		this.gameBoardPanel.getGameBoard().setPiece(this.currentPieceX, this.currentPieceY, this.piecePanel.getPieceToCreate());
 		this.gameBoardPanel.getGameBoard().drawGameBoard(this.gameBoardPanel.getGraphics());
@@ -80,11 +98,18 @@ public class EditPiecePanelController implements ActionListener {
 		if (this.currentPieceY == this.gameBoardPanel.getBoardSize()) {
 			this.validateButton.setEnabled(false);
 			this.autoCompleteButton.setEnabled(false);
+			this.rightSideComboBox.setEnabled(false);
+			this.bottomSideComboBox.setEnabled(false);
 		} else {
 			this.gameBoardPanelResetPiece(isAutocomplete);
 		}
 	}
 	
+	/**
+	 * Reset the piece to edit
+	 * 
+	 * @param isAutocomplete
+	 */
 	private void gameBoardPanelResetPiece(boolean isAutocomplete) {
 		boolean atRight = this.currentPieceX == this.gameBoardPanel.getBoardSize() - 1;
 		boolean atBottom = this.currentPieceY == this.gameBoardPanel.getBoardSize() - 1;
