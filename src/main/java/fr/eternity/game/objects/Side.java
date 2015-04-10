@@ -2,11 +2,12 @@ package fr.eternity.game.objects;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public enum Side {
+public enum Side implements Serializable {
 	BORDERSIDE("/Images/borderSide.png"),
 	GREENSIDE("/Images/greenSide.png"),
 	REDSIDE("/Images/redSide.png"),

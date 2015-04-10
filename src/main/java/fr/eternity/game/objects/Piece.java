@@ -1,8 +1,10 @@
 package fr.eternity.game.objects;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Piece {
+@SuppressWarnings("serial")
+public class Piece implements Serializable {
 
 	public final static int WIDTH = 64;
 	public final static int TOP = 0;

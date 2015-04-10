@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 
 import fr.eternity.game.objects.Piece;
 import fr.eternity.game.objects.Side;
+import fr.eternity.utils.InputOutputManager;
 import fr.eternity.view.GameBoardPanel;
 import fr.eternity.view.PiecePanel;
 
@@ -19,6 +20,7 @@ public class EditPiecePanelController implements ActionListener {
 	
 	private JButton validateButton;
 	private JButton autoCompleteButton;
+	private JButton saveButton;
 	
 	private PiecePanel piecePanel;
 	
@@ -42,6 +44,7 @@ public class EditPiecePanelController implements ActionListener {
 		JComboBox<Side> bottomSideComboBox,
 		JButton validateButton,
 		JButton autoCompleteButton,
+		JButton saveButton,
 		PiecePanel piecePanel,
 		GameBoardPanel gameBoardPanel
 	) {
@@ -49,6 +52,7 @@ public class EditPiecePanelController implements ActionListener {
 		this.bottomSideComboBox = bottomSideComboBox;
 		this.validateButton = validateButton;
 		this.autoCompleteButton = autoCompleteButton;
+		this.saveButton = saveButton;
 		this.piecePanel = piecePanel;
 		this.gameBoardPanel = gameBoardPanel;
 
@@ -56,6 +60,7 @@ public class EditPiecePanelController implements ActionListener {
 		this.bottomSideComboBox.addActionListener(this);
 		this.validateButton.addActionListener(this);
 		this.autoCompleteButton.addActionListener(this);
+		this.saveButton.addActionListener(this);
 	}
 	
 	/**
@@ -77,9 +82,22 @@ public class EditPiecePanelController implements ActionListener {
 			while (this.currentPieceY < this.gameBoardPanel.getBoardSize()) {
 				this.addCurrentPieceToGameBoard(true);
 			}
+		} else if (actionEvent.getSource() == this.saveButton) {
+			this.saveDeck();
 		}
 	}
 	
+	/**
+	 * save the current deck in a file
+	 */
+	private void saveDeck() {
+		this.gameBoardPanel.getGameBoard().cleanPuzzle();
+		
+		InputOutputManager.writeObject(this.gameBoardPanel.getGameBoard(), InputOutputManager.chooseFile("puzzles"));
+		
+		this.gameBoardPanel.repaint();
+	}
+
 	/**
 	 * Add a the currently edited piece to the gameboard
 	 * 
@@ -100,6 +118,7 @@ public class EditPiecePanelController implements ActionListener {
 			this.autoCompleteButton.setEnabled(false);
 			this.rightSideComboBox.setEnabled(false);
 			this.bottomSideComboBox.setEnabled(false);
+			this.saveButton.setEnabled(true);
 		} else {
 			this.gameBoardPanelResetPiece(isAutocomplete);
 		}

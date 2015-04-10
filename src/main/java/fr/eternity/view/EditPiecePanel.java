@@ -88,6 +88,7 @@ public class EditPiecePanel extends JPanel {
 		this.add(this.autoCompleteButton, gridBagConstraints);
 		
 		this.saveButton = new JButton("Enregistrer");
+		this.saveButton.setEnabled(false);
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.insets = new Insets(2, 2, 2, 2);
@@ -100,7 +101,7 @@ public class EditPiecePanel extends JPanel {
 		gridBagConstraints.insets = new Insets(2, 1, 2, 2);
 		this.add(this.piecePanel, gridBagConstraints);
 		
-		new EditPiecePanelController(this.rightSideComboBox, this.bottomSideComboBox, this.validateButton, this.autoCompleteButton, this.piecePanel, this.gameBoardPanel);
+		new EditPiecePanelController(this.rightSideComboBox, this.bottomSideComboBox, this.validateButton, this.autoCompleteButton, this.saveButton, this.piecePanel, this.gameBoardPanel);
 		
 		this.setVisible(true);
 	}

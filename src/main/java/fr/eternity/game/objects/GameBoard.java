@@ -1,10 +1,12 @@
 package fr.eternity.game.objects;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class GameBoard {
+@SuppressWarnings("serial")
+public class GameBoard implements Serializable {
 	private Piece[][] puzzle;
 	private ArrayList<Piece> deck;
 
@@ -64,5 +66,19 @@ public class GameBoard {
 	 */
 	public Piece getPiece(int x, int y) {
 		return this.puzzle[x][y];
+	}
+	
+	/**
+	 * Push all piece in puzzle to he deck
+	 */
+	public void cleanPuzzle() {
+		for (int x = 0; x < this.puzzle.length; x++) {
+			for (int y = 0; y < this.puzzle[x].length; y++) {
+				if (this.puzzle[x][y] != null) {
+					this.deck.add(this.puzzle[x][y]);
+					this.puzzle[x][y] = null;
+				}
+			}
+		}
 	}
 }
