@@ -4,12 +4,11 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import fr.eternity.game.objects.GameBoard;
 import fr.eternity.game.objects.Piece;
-import fr.eternity.utils.InputOutputManager;
 
 @SuppressWarnings("serial")
 public class PlayingGameAndDeckBoardPanel extends JPanel {
@@ -53,17 +52,18 @@ public class PlayingGameAndDeckBoardPanel extends JPanel {
 				puzzlePanel.add(this.puzzlePiecePanels[i][j], gridBagConstraints);
 				deckPanel.add(this.deckPiecePanels[i][j], gridBagConstraints);
 			}
-		}
+		}		
 		
-		GameBoard gameBoard = (GameBoard) InputOutputManager.readObject(InputOutputManager.chooseFile("puzzles", false));
-		
+		this.setVisible(true);
+	}
+	
+	public void setDeck(ArrayList<Piece> deck) {		
 		int x = 0;
 		int y = 0;
-		for (Piece piece : gameBoard.getDeck()) {
+		for (Piece piece : deck) {
 			for (int i = 0; i <= Math.floor((Math.random() * 4)); i++) {
 				piece.rotateToLeft();
 			}
-			
 			
 			this.deckPiecePanels[x][y].setPieceToCreate(piece);
 			x++;
@@ -74,9 +74,7 @@ public class PlayingGameAndDeckBoardPanel extends JPanel {
 			}
 		}
 		
-		
-		
-		this.setVisible(true);
+		this.paint(this.getGraphics());
 	}
 	
 	public PiecePanel[][] getPuzzlePiecePanels() {

@@ -40,5 +40,9 @@ public class PlayingPanel extends JPanel {
 		
 		new PlayingPanelControl(this.playingGameAndDeckBoardPanel.getPuzzlePiecePanels(), this.playingGameAndDeckBoardPanel.getDeckPiecePanels(), this.controlPiecePanel.getPiecePanel());
 	}
+	
+	public PlayingGameAndDeckBoardPanel getPlayingGameAndDeckBoardPanel() {
+		return this.playingGameAndDeckBoardPanel;
+	}
 
 }

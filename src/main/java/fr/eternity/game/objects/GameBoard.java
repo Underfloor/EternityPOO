@@ -3,6 +3,7 @@ package fr.eternity.game.objects;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 @SuppressWarnings("serial")
@@ -88,6 +89,7 @@ public class GameBoard implements Serializable {
 	 * @return
 	 */
 	public ArrayList<Piece> getDeck() {
+		Collections.shuffle(this.deck);
 		return this.deck;
 	}
 }
