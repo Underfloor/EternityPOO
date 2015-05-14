@@ -1,5 +1,6 @@
 package fr.eternity.view;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -27,9 +28,18 @@ public class PlayingGameAndDeckBoardPanel extends JPanel {
 			}
 		}
 		
+		JPanel puzzlePanel = new JPanel();
+		JPanel deckPanel = new JPanel();
+		puzzlePanel.setBackground(Color.BLACK);
+		deckPanel.setBackground(Color.DARK_GRAY);
+		this.add(puzzlePanel);
+		this.add(deckPanel);
+		
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		this.setLayout(gridBagLayout);
+		puzzlePanel.setLayout(gridBagLayout);
+		gridBagLayout = new GridBagLayout();
+		deckPanel.setLayout(gridBagLayout);
 		
 		gridBagConstraints.gridheight = 1;
 		gridBagConstraints.gridwidth = 1;
@@ -40,10 +50,8 @@ public class PlayingGameAndDeckBoardPanel extends JPanel {
 			for (int j = 0; j < 4; j++) {
 				gridBagConstraints.gridx = i;
 				gridBagConstraints.gridy = j;
-				this.add(this.puzzlePiecePanels[i][j], gridBagConstraints);
-				
-				gridBagConstraints.gridx = i + 4;
-				this.add(this.deckPiecePanels[i][j], gridBagConstraints);
+				puzzlePanel.add(this.puzzlePiecePanels[i][j], gridBagConstraints);
+				deckPanel.add(this.deckPiecePanels[i][j], gridBagConstraints);
 			}
 		}
 		
