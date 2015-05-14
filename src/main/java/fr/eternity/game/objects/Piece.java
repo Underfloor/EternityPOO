@@ -109,4 +109,29 @@ public class Piece implements Serializable {
 		return this.sides[side];		
 	}
 	
+	/**
+	 * Rotate the piece to his left.
+	 */
+	public void rotateToLeft() {
+		Side receiver = this.sides[0];
+		
+		for (int i = 1; i < 4; i++) {
+			this.sides[i - 1] = this.sides[i];
+		}
+		
+		this.sides[3] = receiver;
+	}
+	
+	/**
+	 * Rotate the piece to his right.
+	 */
+	public void rotateToRight() {
+		Side receiver = this.sides[3];
+		
+		for (int i = 2; i >= 0; i--) {
+			this.sides[i + 1] = this.sides[i];
+		}
+		
+		this.sides[0] = receiver;
+	}
 }

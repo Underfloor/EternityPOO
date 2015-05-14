@@ -21,7 +21,7 @@ public class PiecePanel extends JPanel {
 	 */
 	public PiecePanel() {
 		if (PiecePanel.background == null) {
-			PiecePanel.background = new ImageIcon("Images/cross.png");
+			PiecePanel.background = new ImageIcon(this.getClass().getResource("/Images/cross.png"));
 		}
 		
 		this.pieceToCreate = new Piece();
@@ -42,11 +42,32 @@ public class PiecePanel extends JPanel {
 	}
 	
 	/**
+	 * Constructor
+	 */
+	public PiecePanel(Piece piece) {
+		if (PiecePanel.background == null) {
+			PiecePanel.background = new ImageIcon(this.getClass().getResource("/Images/cross.png"));
+		}
+		
+		this.pieceToCreate = piece;
+		
+		Dimension dimension = new Dimension(Piece.WIDTH, Piece.WIDTH);
+		this.setSize(dimension);
+		this.setPreferredSize(dimension);
+		this.setVisible(true);
+	}
+	
+	/**
 	 * Draw the piece panel
 	 */
 	public void paintComponent(Graphics g) {
+		g.clearRect(0, 0, Piece.WIDTH, Piece.WIDTH);
+		
         g.drawImage(PiecePanel.background.getImage(), 0, 0, null);
-        this.pieceToCreate.drawPiece(g);
+        
+        if (this.pieceToCreate != null) {
+            this.pieceToCreate.drawPiece(g);
+        }
     }
 	
 	/**
@@ -76,6 +97,15 @@ public class PiecePanel extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Set the piece to create
+	 * 
+	 * @param piece
+	 */
+	public void setPieceToCreate(Piece piece) {
+		this.pieceToCreate = piece;
 	}
 	
 }

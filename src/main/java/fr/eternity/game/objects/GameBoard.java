@@ -81,4 +81,13 @@ public class GameBoard implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * Get the deck
+	 * 
+	 * @return
+	 */
+	public ArrayList<Piece> getDeck() {
+		return this.deck;
+	}
 }

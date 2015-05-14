@@ -34,10 +34,10 @@ public class EditPiecePanel extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		
-		this.gameBoardPanel = new GameBoardPanel(8);
+		this.gameBoardPanel = new GameBoardPanel(4);
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
-		gridBagConstraints.gridheight = 8;
+		gridBagConstraints.gridheight = 4;
 		gridBagConstraints.gridwidth = 1;
 		gridBagConstraints.insets = new Insets(2, 2, 2, 0);
 		gridBagConstraints.anchor = GridBagConstraints.CENTER;

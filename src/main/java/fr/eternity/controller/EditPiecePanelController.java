@@ -17,18 +17,18 @@ public class EditPiecePanelController implements ActionListener {
 
 	private JComboBox<Side> rightSideComboBox;
 	private JComboBox<Side> bottomSideComboBox;
-	
+
 	private JButton validateButton;
 	private JButton autoCompleteButton;
 	private JButton saveButton;
-	
+
 	private PiecePanel piecePanel;
-	
+
 	private GameBoardPanel gameBoardPanel;
 
 	private int currentPieceX = 0;
 	private int currentPieceY = 0;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -40,14 +40,14 @@ public class EditPiecePanelController implements ActionListener {
 	 * @param gameBoardPanel
 	 */
 	public EditPiecePanelController(
-		JComboBox<Side> rightSideComboBox,
-		JComboBox<Side> bottomSideComboBox,
-		JButton validateButton,
-		JButton autoCompleteButton,
-		JButton saveButton,
-		PiecePanel piecePanel,
-		GameBoardPanel gameBoardPanel
-	) {
+			JComboBox<Side> rightSideComboBox,
+			JComboBox<Side> bottomSideComboBox,
+			JButton validateButton,
+			JButton autoCompleteButton,
+			JButton saveButton,
+			PiecePanel piecePanel,
+			GameBoardPanel gameBoardPanel
+			) {
 		this.rightSideComboBox = rightSideComboBox;
 		this.bottomSideComboBox = bottomSideComboBox;
 		this.validateButton = validateButton;
@@ -62,7 +62,7 @@ public class EditPiecePanelController implements ActionListener {
 		this.autoCompleteButton.addActionListener(this);
 		this.saveButton.addActionListener(this);
 	}
-	
+
 	/**
 	 * Event handler
 	 */
@@ -73,7 +73,7 @@ public class EditPiecePanelController implements ActionListener {
 			} else {
 				this.piecePanel.getPieceToCreate().setBottomSide((Side) this.bottomSideComboBox.getSelectedItem());
 			}
-			
+
 			Graphics piecePanelGraphics = this.piecePanel.getGraphics();
 			this.piecePanel.paint(piecePanelGraphics);
 		} else if(actionEvent.getSource() == this.validateButton) {
@@ -86,15 +86,15 @@ public class EditPiecePanelController implements ActionListener {
 			this.saveDeck();
 		}
 	}
-	
+
 	/**
 	 * save the current deck in a file
 	 */
 	private void saveDeck() {
 		this.gameBoardPanel.getGameBoard().cleanPuzzle();
-		
-		InputOutputManager.writeObject(this.gameBoardPanel.getGameBoard(), InputOutputManager.chooseFile("puzzles"));
-		
+
+		InputOutputManager.writeObject(this.gameBoardPanel.getGameBoard(), InputOutputManager.chooseFile("puzzles", true));
+
 		this.gameBoardPanel.repaint();
 	}
 
@@ -106,7 +106,7 @@ public class EditPiecePanelController implements ActionListener {
 	private void addCurrentPieceToGameBoard(boolean isAutocomplete) {
 		this.gameBoardPanel.getGameBoard().setPiece(this.currentPieceX, this.currentPieceY, this.piecePanel.getPieceToCreate());
 		this.gameBoardPanel.getGameBoard().drawGameBoard(this.gameBoardPanel.getGraphics());
-		
+
 		this.currentPieceX++;
 		if (this.currentPieceX == this.gameBoardPanel.getBoardSize()) {
 			this.currentPieceX = 0;
@@ -123,7 +123,7 @@ public class EditPiecePanelController implements ActionListener {
 			this.gameBoardPanelResetPiece(isAutocomplete);
 		}
 	}
-	
+
 	/**
 	 * Reset the piece to edit
 	 * 
@@ -132,14 +132,14 @@ public class EditPiecePanelController implements ActionListener {
 	private void gameBoardPanelResetPiece(boolean isAutocomplete) {
 		boolean atRight = this.currentPieceX == this.gameBoardPanel.getBoardSize() - 1;
 		boolean atBottom = this.currentPieceY == this.gameBoardPanel.getBoardSize() - 1;
-		
+
 		Object[] possibleSides = Side.getInternalSides();
 		Side topSide = this.currentPieceY == 0 ? Side.BORDERSIDE : this.gameBoardPanel.getPiece(this.currentPieceX, this.currentPieceY - 1).getSide(Piece.BOTTOM);
 		Side rightSide = atRight ? Side.BORDERSIDE : (Side) possibleSides[(int) (Math.random() * possibleSides.length)];
 		Side bottomSide = atBottom ? Side.BORDERSIDE : (Side) possibleSides[(int) (Math.random() * possibleSides.length)];
 		Side leftSide = this.currentPieceX == 0 ? Side.BORDERSIDE : this.gameBoardPanel.getPiece(this.currentPieceX - 1, this.currentPieceY).getSide(Piece.RIGHT);
 		this.piecePanel.resetPieceToCreate(topSide, rightSide, bottomSide, leftSide);
-		
+
 		this.piecePanel.repaint();
 		if (! isAutocomplete) {
 			if (atRight) {
@@ -147,7 +147,7 @@ public class EditPiecePanelController implements ActionListener {
 			} else if (! this.rightSideComboBox.isEnabled()) {
 				this.rightSideComboBox.setEnabled(true);
 			}
-			
+
 			if (atBottom) {
 				this.bottomSideComboBox.setEnabled(false);
 			} else if (! this.bottomSideComboBox.isEnabled()) {
@@ -155,5 +155,5 @@ public class EditPiecePanelController implements ActionListener {
 			}
 		}
 	}
-
+	
 }
