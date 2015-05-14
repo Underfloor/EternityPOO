@@ -10,6 +10,7 @@ import fr.eternity.game.objects.GameBoard;
 import fr.eternity.utils.InputOutputManager;
 import fr.eternity.view.EditPiecePanel;
 import fr.eternity.view.MainFrame;
+import fr.eternity.view.PlayingGameAndDeckBoardPanel;
 import fr.eternity.view.PlayingPanel;
 
 public class MainFrameController implements ActionListener {
@@ -72,28 +73,13 @@ public class MainFrameController implements ActionListener {
 			GameBoard gameBoard = (GameBoard) InputOutputManager.readObject(InputOutputManager.chooseFile("puzzles", false));
 			
 			this.playingPanel.getPlayingGameAndDeckBoardPanel().setDeck(gameBoard.getDeck());
+		} else if (actionEvent.getSource() == this.loadMenuItem) {
+			PlayingGameAndDeckBoardPanel playingGameAndDeckBoardPanel = (PlayingGameAndDeckBoardPanel) InputOutputManager.readObject(InputOutputManager.chooseFile("sauvegardes", false));
+			
+			this.playingPanel.setPlayingGameAndDeckBoardPanel(playingGameAndDeckBoardPanel);
+		} else if (actionEvent.getSource() == this.saveMenuItem) {
+			InputOutputManager.writeObject(this.playingPanel.getPlayingGameAndDeckBoardPanel(), InputOutputManager.chooseFile("sauvegardes", true));
 		}
 	}
-	
-
-	/*
-	GameBoard gameBoard = (GameBoard) InputOutputManager.readObject(InputOutputManager.chooseFile("puzzles", false));
-	
-	int x = 0;
-	int y = 0;
-	for (Piece piece : gameBoard.getDeck()) {
-		for (int i = 0; i <= Math.floor((Math.random() * 4)); i++) {
-			piece.rotateToLeft();
-		}
-		
-		
-		this.deckPiecePanels[x][y].setPieceToCreate(piece);
-		x++;
-		
-		if (x == 4) {
-			x = 0;
-			y++;
-		}
-	}*/
 
 }

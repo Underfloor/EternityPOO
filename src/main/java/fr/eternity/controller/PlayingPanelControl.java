@@ -3,6 +3,8 @@ package fr.eternity.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
 import fr.eternity.game.objects.Piece;
 import fr.eternity.game.objects.Side;
 import fr.eternity.view.PiecePanel;
@@ -100,6 +102,21 @@ public class PlayingPanelControl implements MouseListener {
 			
 			this.piecePanel.paint(this.piecePanel.getGraphics());
 			piecePanel.paint(piecePanel.getGraphics());
+		}
+		
+		boolean win = true;
+		outerloop:
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (this.puzzlePiecePanels[i][j].getPieceToCreate() == null) {
+					win = false;
+					break outerloop;
+				}
+			}
+		}
+		
+		if (win) {
+			JOptionPane.showMessageDialog(null, "Vous avez réussi !");
 		}
 	}
 

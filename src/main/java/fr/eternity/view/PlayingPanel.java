@@ -45,4 +45,8 @@ public class PlayingPanel extends JPanel {
 		return this.playingGameAndDeckBoardPanel;
 	}
 
+	public void setPlayingGameAndDeckBoardPanel(PlayingGameAndDeckBoardPanel playingGameAndDeckBoardPanel) {
+		this.playingGameAndDeckBoardPanel = playingGameAndDeckBoardPanel;
+	}
+
 }
